@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Interés Simple y Compuesto </title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        .container { max-width: 400px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        input, select, button { width: 100%; padding: 10px; margin: 10px 0; }
+        button { cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Calculadora de Interés  *CARO CALDERÓN DANIEL*</h2>
+        <label for="capital">Capital Inicial (P):</label>
+        <input type="number" id="capital" placeholder="Ingresa el capital inicial" step="any">
+
+        <label for="tasa">Tasa de Interés (%) anual:</label>
+        <input type="number" id="tasa" placeholder="Ingresa la tasa de interés" step="any">
+
+        <label for="periodos">Número de períodos (años):</label>
+        <input type="number" id="periodos" placeholder="Ingresa el número de períodos" step="any">
+
+        <label for="tipoInteres">Tipo de Interés:</label>
+        <select id="tipoInteres">
+            <option value="simple">Interés Simple</option>
+            <option value="compuesto">Interés Compuesto</option>
+        </select>
+
+        <button onclick="calcularInteres()">Calcular</button>
+
+        <h3 id="resultado"></h3>
+    </div>
+
+    <script>
+        function calcularInteres() {
+            const capital = parseFloat(document.getElementById("capital").value);
+            const tasa = parseFloat(document.getElementById("tasa").value) / 100;
+            const periodos = parseFloat(document.getElementById("periodos").value);
+            const tipoInteres = document.getElementById("tipoInteres").value;
+            let resultado = 0;
+
+            if (tipoInteres === "simple") {
+                resultado = capital * (1 + tasa * periodos);
+            } else if (tipoInteres === "compuesto") {
+                resultado = capital * Math.pow((1 + tasa), periodos);
+            }
+
+            document.getElementById("resultado").textContent = "Resultado: " + resultado.toFixed(2);
+        }
+    </script>
+</body>
+</html>
